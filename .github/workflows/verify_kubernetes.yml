@@ -1,5 +1,6 @@
 name: E2E Test Kubernetes
 on:
+  # NOTE: If you change these you must update verify_kubernetes-noop.yml as well
   pull_request:
     paths:
       - 'yarn.lock'

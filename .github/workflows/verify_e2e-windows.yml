@@ -3,6 +3,7 @@
 
 name: E2E Test Windows
 on:
+  # NOTE: If you change these you must update verify_e2e-windows-noop.yml as well
   pull_request:
     paths:
       - 'yarn.lock'
@@ -17,18 +18,17 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: windows-2019
 
     strategy:
       matrix:
-        os: [windows-2019]
         node-version: [16.x, 18.x]
 
     env:
       CI: true
       NODE_OPTIONS: --max-old-space-size=8192
 
-    name: Node ${{ matrix.node-version }} on ${{ matrix.os }}
+    name: E2E windows ${{ matrix.node-version }}
     steps:
       # In order to have the create-app template function as if it was downloaded from NPM
       # we need to make sure we checkout files with LF line endings only
